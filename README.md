@@ -1,60 +1,60 @@
-Objective
+# Summer Activities Recommendation 
 
+## Objective
 Develop a Python Flask server that accepts a city name from a user, queries a Large Language Model (LLM), and returns a structured list of the top 10 things to do in summer for that city.
 
-Setup Instructions
+---
 
-Clone the repository
+## Setup Instructions
 
+### Clone the repository
+```bash
 git clone <repository-url>
 cd <repository-folder>
-
-
-Create a virtual environment
-
+```
+### Create a virtual environment
+```bash
 python -m venv .venv
-
-
-Activate the virtual environment
-
+```
+### Activate the virtual environment
 Windows
 
+```bash
 .venv\Scripts\activate
-
-
-macOS / Linux
-
+```
+### macOS / Linux
+```bash
 source .venv/bin/activate
-
-
-Install dependencies
-
+```
+### Install dependencies
+```bash
 pip install -r requirements.txt
-
-
-Create a .env file in the project root and add your OpenAI API key:
-
+```
+### Create a .env file
+In the project root, add your OpenAI API key:
+``` text
 OPENAI_API_KEY=your_openai_api_key_here
-
-
-Start the Flask server
-
+```
+### Start the Flask server
+```bash
 python app.py
-
-API Usage
+```
+## API Usage
 Endpoint
+```
 POST /recommendations
 Content-Type: application/json
-
-Request Body
+``` 
+### Request Body
+```
 {
   "city": "Hyderabad"
 }
-
-
+```
 city (string) – The name of the city to get summer activity recommendations for. This field is mandatory.
 
-Example Successful Response
+### Example Successful Response
+```
 [
   { "city": "Hyderabad", "todo": "Visit Ramoji Film City" },
   { "city": "Hyderabad", "todo": "Explore Charminar" },
@@ -67,50 +67,41 @@ Example Successful Response
   { "city": "Hyderabad", "todo": "Relax at Shilparamam cultural village" },
   { "city": "Hyderabad", "todo": "Attend summer workshops at Birla Science Museum" }
 ]
-
-Example Error Responses
+``` 
+### Example Error Responses
 
 Missing city field
-
+```
 {
   "error": "Missing 'city' parameter"
 }
-
+```
 
 HTTP Status: 400 Bad Request
 
-Invalid or missing OpenAI API key
-
+###Invalid or missing OpenAI API key
+```
 {
   "error": "Error code: 401 - {'error': {'message': 'Missing bearer or basic authentication in header', 'type': 'invalid_request_error'}}"
-
-
+}
+```
 HTTP Status: 500 Internal Server Error
 
-Technical Details
-
+### Technical Details
+```
 Backend Framework: Flask
-
 LLM Integration: OpenAI GPT-4o Responses API
-
 Structured Output: Pydantic models for JSON validation
-
 Error Handling:
-
-Missing "city" field → 400
-
-Invalid API key → 500
-
-Unexpected LLM output → 500
-
-Dependencies
-
+  Missing "city" field → 400
+  Invalid API key → 500
+  Unexpected LLM output → 500
+```
+### Dependencies
+```
 All required packages are listed in requirements.txt, including:
-
 Flask
-
 openai
-
 python-dotenv
-
 pydantic
+``` 
